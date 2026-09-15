@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Studio Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --accent: #4F46E5;
+      --accent-hover: #4338CA;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+      --input-bg: #FFFFFF;
+      --radius: 12px;
+      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #020617;
+        --surface: #0F172A;
+        --accent: #818CF8;
+        --accent-hover: #A5B4FC;
+        --text-main: #F8FAFC;
+        --text-muted: #94A3B8;
+        --border: #1E293B;
+        --input-bg: #0F172A;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #020617;
+      --surface: #0F172A;
+      --accent: #818CF8;
+      --accent-hover: #A5B4FC;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --border: #1E293B;
+      --input-bg: #0F172A;
+    }
+
+    :root[data-theme="light"] {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --accent: #4F46E5;
+      --accent-hover: #4338CA;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+      --input-bg: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: grid;
+      place-items: center;
+      min-height: 100%;
+      height: 100%;
+    }
+
+    .auth-container {
+      width: 100%;
+      max-width: 420px;
+      padding: 24px;
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .auth-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      border-radius: 12px;
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 700;
+      font-size: 24px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      text-wrap: balance;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-main);
+      display: block;
+      padding-left: 4px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: inherit;
+      font-size: 15px;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-main);
+      transition: var(--transition);
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .remember-me:hover {
+      color: var(--text-main);
+    }
+
+    .remember-me input {
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .forgot-password {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .forgot-password:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: grid;
+      place-items: center;
+      gap: 8px;
+    }
+
+    button:hover {
+      background: var(--accent-hover);
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .auth-footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .auth-footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 4px;
+    }
+
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .loading-spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .is-loading .loading-spinner {
+      display: block;
+    }
+
+    .is-loading .btn-text {
+      display: none;
+    }
+
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main class="auth-container">
+    <div class="auth-card">
+      <header>
+        <div class="logo">S</div>
+        <h1>Welcome back</h1>
+        <p class="subtitle">Enter your details to access your portal</p>
+      </header>
+
+      <form id="auth-form">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="name@company.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+
+        <div class="form-footer">
+          <label class="remember-me">
+            <input type="checkbox" id="remember" name="remember">
+            <span>Remember me</span>
+          </label>
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+
+        <button type="submit" id="submit-btn">
+          <span class="btn-text">Sign in</span>
+          <div class="loading-spinner"></div>
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="#">Create one</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById('auth-form');
+    const btn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Visual state change
+      btn.disabled = true;
+      btn.classList.add('is-loading');
+
+      // Simulate API call
+      try {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        // Success feedback
+        const btnText = btn.querySelector('.btn-text');
+        btnText.textContent = 'Success!';
+        btn.style.background = '#10B981'; // Emerald 500
+
+        setTimeout(() => {
+          // Reset or redirect
+          btnText.textContent = 'Sign in';
+          btn.style.background = '';
+          btn.disabled = false;
+          btn.classList.remove('is-loading');
+        }, 2000);
+
+      } catch (err) {
+        btn.disabled = false;
+        btn.classList.remove('is-loading');
+      }
+    });
+  </script>
+</body>
+</html>
